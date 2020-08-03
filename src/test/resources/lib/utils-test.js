@@ -14,7 +14,7 @@ exports.testHumanReadableNumber2 = function() {
 test.mock('/lib/xp/content', {
   get: function(p) {
     return {
-      '_id': '201c4f2f-ff5e-4298-8a3f-b07d515795de',  
+      '_id': '201c4f2f-ff5e-4298-8a3f-b07d515795de',
       '_name': 'komfakta-icon4-nettoflytting.svg',
       '_path': '/ssb/kommunefakta/nokkeltall-kommunefakta/nettoflytting/komfakta-icon4-nettoflytting.svg',
       'creator': 'user:system:trine',
@@ -67,21 +67,22 @@ exports.testKeyFigureImageCaption1 = function() {
   test.assertEquals('ikon av mennesker og hus', result, 'Testing extraction of mocked image caption from json')
 }
 
+// Example from Enonic code - works, but not in this project. WHY??
+test.mock('/lib/xp/content', {
+  get: function(params) {
+    return {
+      '_id': 'id'
+    }
+  }
+})
 
-// test.mock('/lib/xp/portal', {
-//   getSiteConfig: function() {
-//     return {
-//       'data': '1234'
-//     }
-//   }
-// })
+exports.testMockLibContent = function() {
+  const libContent = require('/lib/xp/content')
 
-// exports.testDummySiteConfig = function() {
-//   const result = utils.getDummyData()
-//   test
-//   test.assertEquals({
-//     'data': '1234'
-//   },
-//   result,
-//   'Tester å teste tester i test.')
-// }
+  const result = libContent.get({
+    key: 'id'
+  })
+
+  test.assertEquals('id', result['_id'])
+}
+
